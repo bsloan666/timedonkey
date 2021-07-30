@@ -45,7 +45,7 @@ def save_state(tasks):
     with open('/var/tmp/task_dict.json', 'w') as handle:
         handle.write(json.dumps(tasks))
 
-def load_state()
+def load_state():
     """
     restore the global state of all currently open tasks
     """
