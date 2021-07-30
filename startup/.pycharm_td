@@ -1,0 +1,60 @@
+#!/usr/bin/env python
+
+import os
+import time
+import datetime
+import sys
+import json
+
+
+def save_record(app, action, filename):
+    """
+    Custom per-app record saver 
+    """
+    tasks = load_state() 
+    current = datetime.datetime.now()
+    timestr = current.strftime("%Y-%m-%d %H:%M:%S")
+    present = int(time.mktime(current.timetuple()))
+    previous = present
+
+    if app in tasks.keys():
+        if filename in tasks[app].keys():
+            previous = tasks[app][filename]
+        else:
+            tasks[app][filename] = present
+    else:
+        tasks[app] = {filename:present}
+        action = 'open'
+
+    with open('{0}/.activitylog'.format(os.getenv('HOME')), 'a') as handle:
+        if present - previous > 60:
+            handle.write(timestr + ',' + app + ',' + 'close' + ',' + filename + '\n')
+            handle.write(timestr + ',' + app + ',' + 'open' + ',' + filename + '\n')
+        elif previous == present: 
+            handle.write(timestr + ',' + app + ',' + 'open' + ',' + filename + '\n')
+        else:
+            handle.write(timestr + ',' + app + ',' + action + ',' + filename + '\n')
+
+    save_state(tasks)
+
+
+def save_state(tasks):
+    """
+    Keep a dictionary of running tasks
+    """
+    with open('/var/tmp/task_dict.json', 'w') as handle:
+        handle.write(json.dumps(tasks))
+
+def load_state()
+    """
+    restore the global state of all currently open tasks
+    """
+    filename = '/var/tmp/task_dict.json'
+    if not os.path.exists(filename):
+        return {}
+    with open('/var/tmp/task_dict.json', 'r') as handle:
+        return json.load(handle)
+
+if __name__ == "__main__":
+    save_record(sys.argv[1], sys.argv[2], sys.argv[3])
+
