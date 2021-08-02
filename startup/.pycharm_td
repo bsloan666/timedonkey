@@ -40,7 +40,7 @@ def save_record(app, action, filename):
 
 def save_state(tasks):
     """
-    Keep a dictionary of running tasks
+    archive a dictionary of running tasks
     """
     with open('/var/tmp/task_dict.json', 'w') as handle:
         handle.write(json.dumps(tasks))
