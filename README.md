@@ -48,6 +48,14 @@ Fri Jul 23:
          1h ilut_for_resolve_generator.nk
 ```
 
+Getting Started
+---------------
+To get up-and-running with any of the supported applications, copy the appropriate adapter from the startup/ directory
+to your home directory. For Pycharm users you'll need to add a File Watcher. Here's an illustration of how that will 
+look in Pycharm preferences:
+
+![image info](./docs/image/.png)
+
 The Catch
 ---------
 
