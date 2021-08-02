@@ -54,7 +54,7 @@ To get up-and-running with any of the supported applications, copy the appropria
 to your home directory. For Pycharm users you'll need to add a File Watcher. Here's an illustration of how that will 
 look in Pycharm preferences:
 
-![image info](./docs/image/.png)
+![image info](./docs/image/pycharm_filewatcher.png)
 
 The Catch
 ---------
