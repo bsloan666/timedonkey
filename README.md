@@ -56,12 +56,14 @@ look in Pycharm preferences:
 
 ![image info](./docs/image/pycharm_filewatcher.png)
 
+Be sure to set the correct path to the file ".pycharm_td". It should reside in the root of your home directory. 
+
 The Catch
 ---------
 
 There's a requirement that one's favorite applications must have "hooks" that allow user-defined actions
-to be associated with certain events. I have no idea if PyCharm, XCode or VisualStudio expose, say, file-changed
-or viewed-file-changed events. But these would be necessary to allow this system to work. 
+to be associated with certain events. Graphical IDEs like Pycharm, VisualStudio and XCode must allow custom actions on, say, file-changed
+or viewed-file-changed events in order for them to work.
 
 I believe systems that use Xorg windowing system have a way to monitor the window that is currently in focus. Though
 that might not be too useful.
