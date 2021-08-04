@@ -49,8 +49,7 @@ Fri Jul 23:
 
 Getting Started
 ---------------
-To get up-and-running with any of the supported applications, copy the appropriate adapter from the startup/ directory
-to your home directory. 
+To get up-and-running with any of the supported applications, follow the application-specific instructions below
 
 
 VIM
