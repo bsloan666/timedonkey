@@ -2,8 +2,8 @@
 
 """
 A bit of a mess.
-Working with PyCharm's custom FileWatcher events, this program gets called 
-whenever an autosave happens. We interpret an autosave of the same file within 
+Working with PyCharm's or VSCode's  custom FileWatcher events, this program gets called 
+whenever a save or autosave event happens. We interpret an autosave of the same file within 
 1 minute of the previous autosave as an indicator of ongoing work on the file. 
 """
 
