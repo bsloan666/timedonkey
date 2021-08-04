@@ -75,7 +75,7 @@ This snippet can be found in this repository in startup/.vimrc.
 
 Nuke
 ----
-Nuke looks for a startup file called manu.py in a .nuke/ directory in the users home/ directory. Adding the following lines will
+Nuke looks for a startup file called menu.py in a .nuke/ directory in the users home/ directory. Adding the following lines will
 track file opens, saves and closes in Nuke:
 ```
 # this is a python startup script that will be run automatically 
