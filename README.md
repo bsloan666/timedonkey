@@ -1,9 +1,8 @@
 TimeDonkey
 ==========
 
-A very dumb framework for tracking hours spent editing files
-------------------------------------------------------------
-
+A very humble framework for tracking time spent in various applications  
+-----------------------------------------------------------------------
 
 I spend most of my time at work using a handful of applications and often find myself 
 at the end of the week wondering what the heck I was doing for the past 5 days. This little 
@@ -54,6 +53,59 @@ To get up-and-running with any of the supported applications, copy the appropria
 to your home directory. 
 
 
+VIM
+---
+Append the following lines to your .vimrc file (usually in the root of your home directory)
+```
+" TimeDonkey vim plugin
+function SaveRecord(app, action)
+    let com = "echo `date +\"%Y-%m-%d %H:%M:%S\"`," . a:app . "," . a:action . "," . @% . " >> ~/.activitylog"
+    call system(com)
+    return 0
+endfunction
+
+" Events that call TimeDonkey::SaveRecord
+autocmd BufWinEnter * call SaveRecord('vi', 'open')
+autocmd BufWritePost * call SaveRecord('vi', 'save')
+autocmd BufWinLeave * call SaveRecord('vi', 'close')
+```
+
+This snippet can be found in this repository in startup/.vimrc. 
+
+
+Nuke
+----
+Nuke looks for a startup file called manu.py in a .nuke/ directory in the users home/ directory. Adding the following lines will
+track file opens, saves and closes in Nuke:
+```
+# this is a python startup script that will be run automatically 
+# when Nuke (https://learn.foundry.com/nuke/13.0/content/learn_nuke.html) 
+# is launched
+
+
+import os
+import datetime
+import nuke
+
+
+def save_record(app, action):
+    """
+    Save a time-stamped event in the users TimeDonkey activity log.  
+    """
+    current = datetime.datetime.now()
+    timestr = current.strftime("%Y-%m-%d %H:%M:%S")
+    if nuke.root().name() == 'Root' or action == 'save':
+        with open('{0}/.activitylog'.format(os.getenv('HOME')), 'a') as handle:
+            handle.write(timestr + ',' + app + ',' + action + ',' + os.path.basename(nuke.root().name()) + '\n')
+        
+
+save_record('nuke', 'open')
+nuke.addOnScriptSave(save_record, args=('nuke', 'save'))
+nuke.addOnScriptClose(save_record, args=('nuke', 'close'))
+
+```
+This snippet can be found in this repository in startup/menu.py. 
+
 PyCharm
 -------
 
@@ -62,17 +114,20 @@ look in Pycharm preferences:
 
 ![image info](./docs/image/pycharm_filewatcher2.png)
 
-Be sure to set the correct path to the file ".ide_td". In the example, it resides in the root of your home directory. 
+Be sure to set the correct path to the file ".ide_td". In the example, it resides in the root of your home directory.
+In this repository, .ide_td lives with the other startup scripts in the startup/ directory. Feel free to move it wherever you 
+please but make sure it matches the path set in PyCharm preferences.
 
 VSCode
 ------
 
 VSCode has an extension called FileWatcher that must first be installed. Here's an illustration of how that will 
-look in Pycharm preferences:
+look in VSCode extensions (editing the settings.json by hand):
+In this repository, .ide_td lives with the other startup scripts in the startup/ directory.
 
 ![image info](./docs/image/vscode_filewatcher2.png)
 
-Be sure to set the correct path to the file ".ide_td", wherever you've installed it.
+Be sure to set the correct path to the file ".ide_td", to wherever you've installed it.
 
 The Catch
 ---------
