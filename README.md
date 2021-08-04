@@ -51,12 +51,28 @@ Fri Jul 23:
 Getting Started
 ---------------
 To get up-and-running with any of the supported applications, copy the appropriate adapter from the startup/ directory
-to your home directory. For Pycharm users you'll need to add a File Watcher. Here's an illustration of how that will 
+to your home directory. 
+
+
+PyCharm
+-------
+
+For Pycharm users you'll need to add a File Watcher. Here's an illustration of how that will 
 look in Pycharm preferences:
 
-![image info](./docs/image/pycharm_filewatcher.png)
+![image info](./docs/image/pycharm_filewatcher2.png)
 
-Be sure to set the correct path to the file ".pycharm_td". It should reside in the root of your home directory. 
+Be sure to set the correct path to the file ".ide_td". In the example, it resides in the root of your home directory. 
+
+VSCode
+------
+
+VSCode has an extension called FileWatcher that must first be installed. Here's an illustration of how that will 
+look in Pycharm preferences:
+
+![image info](./docs/image/vscode_filewatcher2.png)
+
+Be sure to set the correct path to the file ".ide_td", wherever you've installed it.
 
 The Catch
 ---------
