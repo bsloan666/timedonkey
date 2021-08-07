@@ -16,7 +16,7 @@ def parse_record(in_str):
     action = fields[2]
     arg = fields[3].strip()
     date = datetime.datetime.fromtimestamp(timestamp)
-    day = ' '.join(re.split(' ', date.ctime())[0:3])
+    day = ' '.join(re.split(r'[\s]+', date.ctime())[0:3])
    
 
     return {
@@ -83,5 +83,5 @@ if __name__ == "__main__":
                     elif mins >= 45:
                         hrs += 1
                     if hrs:
-                        print("        {0:2.1g}h {1}".format(hrs, target)) 
+                        print("        {0:2.1f}h {1}".format(hrs, target)) 
                             
